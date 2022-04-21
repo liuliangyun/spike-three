@@ -3,12 +3,22 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 const webpack = require('webpack')
 
+function resolve (dir) {
+  return path.join(__dirname, '..', dir)
+}
+
 module.exports = {
   mode: 'none',
   entry: './src/index.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, '../dist')
+    path: resolve('dist')
+  },
+  resolve: {
+    extensions: ['.js', '.vue', '.json'],  // 可省略import文件的后缀，导入优先级是js > vue
+    alias: {
+      '@': resolve('src'),   // import时通过@替代src目录
+    },
   },
   module: {
     rules: [
