@@ -1,6 +1,7 @@
 <template>
   <div>
     <div id="lines-container"></div>
+    <div id="info">Description</div>
   </div>
 </template>
 <script>
@@ -52,5 +53,14 @@
 <style>
 #lines-container {
   height: 100vh;
+}
+#info {
+  color: white;
+  position: absolute;
+  top: 10px;
+  width: 100%;
+  text-align: center;
+  z-index: 100;
+  display:block;
 }
 </style>
