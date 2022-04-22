@@ -15,6 +15,11 @@ const router = new VueRouter({
       path: '/lines',
       component: () => import('../pages/drawingLines'),
     },
+    {
+      name: '3dModel',
+      path: '/3dModel',
+      component: () => import('../pages/3DModel'),
+    },
   ]
 })
 
