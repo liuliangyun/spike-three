@@ -7,6 +7,7 @@
   import * as THREE from 'three'
   import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
   import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
+  import { MapControls } from 'three/examples/jsm/controls/OrbitControls'
 
   export default {
     name: 'Loader',
@@ -15,6 +16,7 @@
         scene: null,
         camera: null,
         renderer: null,
+        controls: null,
       }
     },
     methods: {
@@ -23,10 +25,6 @@
 
         const container = document.getElementById('load-model-container')
 
-        // camera 配置
-        this.camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.25, 100000)//透视摄像机
-        this.camera.position.set(5000, 500, -2000)  //设置相机位置，正面看建筑
-        this.camera.lookAt(this.scene.position)
 
         // render 配置
         this.renderer = new THREE.WebGLRenderer()
@@ -34,6 +32,17 @@
         this.renderer.setClearColor(0xb9d3ff, 1); //设置背景颜色
         this.renderer.shadowMap.enabled = true  // 允许在场景中使用阴影贴图
         container.appendChild(this.renderer.domElement)
+
+
+        // camera 配置
+        this.camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.25, 100000)//透视摄像机
+
+        this.controls = new MapControls( this.camera, this.renderer.domElement )
+
+        // 修改 camera 配置，controls.update() must be called after any manual changes to the camera's transform
+        this.camera.position.set(5000, 500, -2000)  //设置相机位置，正面看建筑
+        this.controls.update()
+
 
         // scene 配置
         this.load3D()
@@ -68,6 +77,7 @@
       animate() {
         // 每次刷新屏幕时都会重绘场景
         requestAnimationFrame( this.animate )
+        this.controls.update()
 
         // 调用渲染器
         this.renderer.render( this.scene, this.camera )
