@@ -71,16 +71,15 @@
         // camera 配置
         this.camera = new THREE.PerspectiveCamera(45, this.container.clientWidth / this.container.clientHeight, 0.25, 100000)//透视摄像机
 
-        this.controls = new MapControls( this.camera, this.renderer.domElement )
 
-        // 修改 camera 配置，controls.update() must be called after any manual changes to the camera's transform
+        // control 配置
+        this.controls = new MapControls( this.camera, this.renderer.domElement )
         this.camera.position.set(5000, 500, -2000)  //设置相机位置，正面看建筑
-        this.controls.update()
+        this.controls.update()  // controls.update() must be called after any manual changes to the camera's transform
 
 
         // scene 配置
         this.load3D()
-
         this.loadLight()
       },
       load3D() {
@@ -91,7 +90,6 @@
 
         let that = this
         loader.load('/static/test.glb', (gltf) => {
-          gltf.scene.position.set(0, 0, 25)
           that.scene.add(gltf.scene)
         }, (xhr) => {
           console.log((xhr.loaded / xhr.total) * 100 + '% loaded')
