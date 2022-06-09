@@ -17,9 +17,14 @@ const router = new VueRouter({
     },
     {
       name: '3dModel',
-      path: '/3dModel',
+      path: '/3d-model',
       component: () => import('../pages/3DModel'),
     },
+    {
+      name: 'vue3dModel',
+      path: '/vue-3d-model',
+      component: () => import('../pages/vue3DModel'),
+    }
   ]
 })
 
