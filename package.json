@@ -11,8 +11,10 @@
   "author": "lyliu",
   "license": "ISC",
   "dependencies": {
+    "fengmap": "^3.0.9",
     "three": "^0.139.2",
     "vue": "^2.6.14",
+    "vue-3d-loader": "^1.2.13",
     "vue-3d-model": "^1.4.0",
     "vue-router": "^3.5.3"
   },
