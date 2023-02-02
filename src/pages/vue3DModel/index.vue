@@ -23,7 +23,10 @@
     </div>
     <div class="model-container">
       <div v-for="(house, index) in houses">
-        <span class="name">{{house.name}}</span>
+        <span class="name" :id="`start${index}`">
+          {{house.name}}
+        </span>
+        <statistics-chart v-show="house.showStatisticsData" :data="house.data" class="statistics-chart" :id="`end${index}`" />
         <model-obj
           :src="house.src"
           :position="position"
@@ -33,8 +36,10 @@
           :controlsOptions="{
             enableZoom,
             enableRotate,
+            maxDistance: 1500,
           }"
           @on-mousemove="(event) => onMouseMove(event, index)"
+          @on-click="(event) => onClick(event, index)"
         />
       </div>
     </div>
@@ -43,6 +48,8 @@
 <script>
 import { ModelObj, ModelCollada, ModelGltf } from 'vue-3d-model'
 import { vue3dLoader } from 'vue-3d-loader'
+import StatisticsChart from './statisticsChart'
+import LeaderLine from '../../utils/leader-line.min'
 
 export default {
   name: 'TestVue3DModel',
@@ -51,6 +58,7 @@ export default {
     ModelCollada,
     ModelGltf,
     vue3dLoader,
+    StatisticsChart,
   },
   data () {
     return {
@@ -58,21 +66,225 @@ export default {
         name: '一号厂房',
         src: 'static/house.obj',
         showStatisticsData: false,
+        lineContainer: null,
+        data: {
+          name: '一号厂房',
+          options: {
+            series: [
+              {
+                name: '一号厂房',
+                type: 'gauge',
+                startAngle: 200,
+                endAngle: -20,
+                axisLine: {
+                  show: true,
+                  lineStyle: {
+                    color: [[0.53, '#FFAB91'], [1, '#e7ebf7']],
+                    width: 10,
+                  },
+                },
+                splitLine: {
+                  show: false,
+                },
+                axisTick: {
+                  show: false,
+                },
+                axisLabel: {
+                  show: false,
+                },
+                pointer: {
+                  show: false,
+                },
+                title: {
+                  show: true,
+                  offsetCenter: [0, '-5%'],
+                  color: '#ebebeb',
+                },
+                detail: {
+                  show: true,
+                  formatter: '{value}%',
+                  fontSize: 20,
+                },
+                data: [
+                  {
+                    value: 53,
+                    name: '占用面积'
+                  }
+                ]
+              }
+            ],
+          },
+          area: 23,
+          usage: '生产',
+        },
       }, {
         name: '二号厂房',
         src: 'static/house.obj',
         showStatisticsData: false,
+        lineContainer: null,
+        data: {
+          name: '二号厂房',
+          options: {
+            series: [
+              {
+                name: '二号厂房',
+                type: 'gauge',
+                startAngle: 200,
+                endAngle: -20,
+                axisLine: {
+                  show: true,
+                  lineStyle: {
+                    color: [[0.53, '#FFAB91'], [1, '#e7ebf7']],
+                    width: 10,
+                  },
+                },
+                splitLine: {
+                  show: false,
+                },
+                axisTick: {
+                  show: false,
+                },
+                axisLabel: {
+                  show: false,
+                },
+                pointer: {
+                  show: false,
+                },
+                title: {
+                  show: true,
+                  offsetCenter: [0, '-5%'],
+                  color: '#ebebeb',
+                },
+                detail: {
+                  show: true,
+                  formatter: '{value}%',
+                  fontSize: 20,
+                },
+                data: [
+                  {
+                    value: 53,
+                    name: '占用面积'
+                  }
+                ]
+              }
+            ],
+          },
+          area: 23,
+          usage: '生产',
+        },
       }, {
         name: '三号厂房',
         src: 'static/house.obj',
         showStatisticsData: false,
+        lineContainer: null,
+        data: {
+          name: '三号厂房',
+          options: {
+            series: [
+              {
+                name: '三号厂房',
+                type: 'gauge',
+                startAngle: 200,
+                endAngle: -20,
+                axisLine: {
+                  show: true,
+                  lineStyle: {
+                    color: [[0.53, '#FFAB91'], [1, '#e7ebf7']],
+                    width: 10,
+                  },
+                },
+                splitLine: {
+                  show: false,
+                },
+                axisTick: {
+                  show: false,
+                },
+                axisLabel: {
+                  show: false,
+                },
+                pointer: {
+                  show: false,
+                },
+                title: {
+                  show: true,
+                  offsetCenter: [0, '-5%'],
+                  color: '#ebebeb',
+                },
+                detail: {
+                  show: true,
+                  formatter: '{value}%',
+                  fontSize: 20,
+                },
+                data: [
+                  {
+                    value: 53,
+                    name: '占用面积'
+                  }
+                ]
+              }
+            ],
+          },
+          area: 23,
+          usage: '生产',
+        },
       }, {
         name: '四号厂房',
         src: 'static/house.obj',
         showStatisticsData: false,
+        lineContainer: null,
+        data: {
+          name: '四号厂房',
+          options: {
+            series: [
+              {
+                name: '四号厂房',
+                type: 'gauge',
+                startAngle: 200,
+                endAngle: -20,
+                axisLine: {
+                  show: true,
+                  lineStyle: {
+                    color: [[0.53, '#FFAB91'], [1, '#e7ebf7']],
+                    width: 10,
+                  },
+                },
+                splitLine: {
+                  show: false,
+                },
+                axisTick: {
+                  show: false,
+                },
+                axisLabel: {
+                  show: false,
+                },
+                pointer: {
+                  show: false,
+                },
+                title: {
+                  show: true,
+                  offsetCenter: [0, '-5%'],
+                  color: '#ebebeb',
+                },
+                detail: {
+                  show: true,
+                  formatter: '{value}%',
+                  fontSize: 20,
+                },
+                data: [
+                  {
+                    value: 53,
+                    name: '占用面积'
+                  }
+                ]
+              }
+            ],
+          },
+          area: 23,
+          usage: '生产',
+        },
       }],
       position: {
-        x: 600,
+        x: 400,
         y: 300,
         z: 0,
       },
@@ -88,8 +300,8 @@ export default {
   },
   methods: {
     onMouseMove (event, index) {
-      console.log(event)
-      this.houses[index].showStatisticsData = !!event
+      // console.log(event)
+      // this.houses[index].showStatisticsData = !!event
       // if (!event) {
       //   if (this.intersected) {
       //     this.intersected.material.color.setStyle('#fff')
@@ -101,6 +313,21 @@ export default {
       // this.intersected = event.object
       // this.intersected.material.color.setStyle('#13ce66')
     },
+    onClick (event, index) {
+      this.houses[index].showStatisticsData = !!event
+      if (this.houses[index].showStatisticsData) {
+        this.$nextTick(() => {
+          if (!this.houses[index].lineContainer) {
+            let startEle = document.getElementById(`start${index}`)
+            let endEle = document.getElementById(`end${index}`)
+            this.houses[index].lineContainer = new LeaderLine(startEle,endEle,{ hide: true, dash: true, path: 'straight' })
+          }
+          this.houses[index].lineContainer.show('fade')
+        })
+      } else {
+        this.houses[index].lineContainer.hide()
+      }
+    }
   }
 }
 </script>
@@ -118,11 +345,18 @@ export default {
       position: relative;
       .name {
         position: absolute;
-        left: 400px;
+        left: 350px;
         top: 130px;
-        color: aqua;
+        color: #FFAB91;
+        font-size: 20px;
+        font-weight: bold;
+        width: 100px;
+      }
+      .statistics-chart {
+        position: absolute;
+        left: 500px;
+        top: 120px;
         z-index: 1;
-        font-size: 24px;
       }
     }
   }
