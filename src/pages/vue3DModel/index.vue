@@ -21,31 +21,22 @@
         </div>
       </div>
     </div>
-    <div class="left-container">
-      <vue3dLoader
-        :filePath="['static/house.obj']"
-        :position="position"
-        :rotation="rotation"
-        :scale="scale"
-        :backgroundColor="0x000102"
-        :controlsOptions="{
-          enableZoom,
-          enableRotate,
-        }"
-      />
-    </div>
-    <div class="right-container">
-      <vue3dLoader
-        :filePath="['static/house.obj']"
-        :position="position"
-        :rotation="rotation"
-        :scale="scale"
-        :backgroundColor="0x000102"
-        :controlsOptions="{
-          enableZoom,
-          enableRotate,
-        }"
-      />
+    <div class="model-container">
+      <div v-for="(house, index) in houses">
+        <span class="name">{{house.name}}</span>
+        <model-obj
+          :src="house.src"
+          :position="position"
+          :rotation="rotation"
+          :scale="scale"
+          :backgroundColor="0x000102"
+          :controlsOptions="{
+            enableZoom,
+            enableRotate,
+          }"
+          @on-mousemove="(event) => onMouseMove(event, index)"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -63,7 +54,23 @@ export default {
   },
   data () {
     return {
-      intersected: null,
+      houses: [{
+        name: '一号厂房',
+        src: 'static/house.obj',
+        showStatisticsData: false,
+      }, {
+        name: '二号厂房',
+        src: 'static/house.obj',
+        showStatisticsData: false,
+      }, {
+        name: '三号厂房',
+        src: 'static/house.obj',
+        showStatisticsData: false,
+      }, {
+        name: '四号厂房',
+        src: 'static/house.obj',
+        showStatisticsData: false,
+      }],
       position: {
         x: 600,
         y: 300,
@@ -80,18 +87,19 @@ export default {
     }
   },
   methods: {
-    onMouseMove (event) {
+    onMouseMove (event, index) {
       console.log(event)
-      if (!event) {
-        if (this.intersected) {
-          this.intersected.material.color.setStyle('#fff')
-        }
-        this.intersected = null
-        return
-      }
-
-      this.intersected = event.object
-      this.intersected.material.color.setStyle('#13ce66')
+      this.houses[index].showStatisticsData = !!event
+      // if (!event) {
+      //   if (this.intersected) {
+      //     this.intersected.material.color.setStyle('#fff')
+      //   }
+      //   this.intersected = null
+      //   return
+      // }
+      //
+      // this.intersected = event.object
+      // this.intersected.material.color.setStyle('#13ce66')
     },
   }
 }
@@ -101,19 +109,22 @@ export default {
     height: 100%;
     background-color: #000102;
   }
-  .left-container {
-    position: absolute;
-    top: 75px;
-    left: 0;
-    width: 50%;
-    height: calc(100% - 80px);
-  }
-  .right-container {
-    position: absolute;
-    top: 75px;
-    right: 0;
-    width: 50%;
-    height: calc(100% - 80px);
+  .model-container {
+    display: flex;
+    flex-wrap: wrap;
+    & > div {
+      width: 49%;
+      height: 49%;
+      position: relative;
+      .name {
+        position: absolute;
+        left: 400px;
+        top: 130px;
+        color: aqua;
+        z-index: 1;
+        font-size: 24px;
+      }
+    }
   }
   .header-container {
     width: 100%;
