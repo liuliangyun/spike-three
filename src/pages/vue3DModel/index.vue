@@ -1,50 +1,50 @@
-<!--<template>-->
-<!--  <model-obj src="static/test2.obj" mtl="static/test2.mtl"></model-obj>-->
+<template>
+  <model-obj src="static/house13.obj" mtl="static/house13.mtl"></model-obj>
 <!--  <model-collada src="static/elf/elf.dae"></model-collada>-->
 <!--  <div class="vue-3d-model-container">-->
 <!--    <model-gltf src="static/glTF/Duck.gltf"></model-gltf>-->
 <!--    <model-obj src="static/tree.obj" @on-mousemove="onMouseMove"></model-obj>-->
 <!--  </div>-->
-<!--</template>-->
-<template>
-  <div class="main">
-    <div class="header-container">
-      <div class="header">
-        <div class="logo">
-          <img src="static/logo.png" />
-        </div>
-        <div class="title">
-          <span title="热烈欢迎市领导莅临我厂考察指导工作~~"> 热烈欢迎市领导莅临我厂考察指导工作~~</span>
-        </div>
-        <div class="date">
-          <span>2022年04月25日 星期一 20:42&nbsp;&nbsp;|&nbsp;&nbsp;30℃ 晴天</span>
-        </div>
-      </div>
-    </div>
-    <div class="model-container">
-      <div v-for="(house, index) in houses">
-        <span class="name" :id="`start${index}`">
-          {{house.name}}
-        </span>
-        <statistics-chart v-show="house.showStatisticsData" :data="house.data" class="statistics-chart" :id="`end${index}`" />
-        <model-obj
-          :src="house.src"
-          :position="position"
-          :rotation="rotation"
-          :scale="scale"
-          :backgroundColor="0x000102"
-          :controlsOptions="{
-            enableZoom,
-            enableRotate,
-            maxDistance: 1500,
-          }"
-          @on-mousemove="(event) => onMouseMove(event, index)"
-          @on-click="(event) => onClick(event, index)"
-        />
-      </div>
-    </div>
-  </div>
 </template>
+<!--<template>-->
+<!--  <div class="main">-->
+<!--    <div class="header-container">-->
+<!--      <div class="header">-->
+<!--        <div class="logo">-->
+<!--          <img src="static/logo.png" />-->
+<!--        </div>-->
+<!--        <div class="title">-->
+<!--          <span title="热烈欢迎市领导莅临我厂考察指导工作~~"> 热烈欢迎市领导莅临我厂考察指导工作~~</span>-->
+<!--        </div>-->
+<!--        <div class="date">-->
+<!--          <span>2022年04月25日 星期一 20:42&nbsp;&nbsp;|&nbsp;&nbsp;30℃ 晴天</span>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="model-container">-->
+<!--      <div v-for="(house, index) in houses">-->
+<!--        <span class="name" :id="`start${index}`">-->
+<!--          {{house.name}}-->
+<!--        </span>-->
+<!--        <statistics-chart v-show="house.showStatisticsData" :data="house.data" class="statistics-chart" :id="`end${index}`" />-->
+<!--        <model-obj-->
+<!--          :src="house.src"-->
+<!--          :position="position"-->
+<!--          :rotation="rotation"-->
+<!--          :scale="scale"-->
+<!--          :backgroundColor="0x000102"-->
+<!--          :controlsOptions="{-->
+<!--            enableZoom,-->
+<!--            enableRotate,-->
+<!--            maxDistance: 1500,-->
+<!--          }"-->
+<!--          @on-mousemove="(event) => onMouseMove(event, index)"-->
+<!--          @on-click="(event) => onClick(event, index)"-->
+<!--        />-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</template>-->
 <script>
 import { ModelObj, ModelCollada, ModelGltf } from 'vue-3d-model'
 import { vue3dLoader } from 'vue-3d-loader'
