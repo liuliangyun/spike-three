@@ -34,7 +34,23 @@ const router = new VueRouter({
       name: 'vue3dLoader',
       path: '/vue-3d-loader',
       component: () => import('../pages/vue3DLoader'),
-    }
+    },
+    {
+      name: 'dashboard',
+      path: '/dashboard',
+      component: () => import('../pages/Dashboard'),
+      redirect: '/dashboard/first-page',
+      children: [
+        {
+          path: 'first-page',
+          component: () => import('../pages/vue3DModel'),
+        },
+        {
+          path: 'other-page',
+          component: () => import('../pages/drawingLines'),
+        },
+      ]
+    },
   ]
 })
 
