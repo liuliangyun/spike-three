@@ -15,16 +15,16 @@
     </div>
     <div class="container">
       <vue3dLoader
-          :filePath="['static/factory13.obj']"
-          :mtlPath="['static/factory13.mtl']"
-          :backgroundColor="0x000102"
-          :position="position"
-          :rotation="rotation"
-          :scale="scale"
-          :labels="labels"
-          :controlsOptions="{
-          enableZoom,
-          enableRotate,
+        :filePath="['static/factory6-2.obj']"
+        :mtlPath="['static/factory6-2.mtl']"
+        :backgroundColor="0x000102"
+        :position="position"
+        :rotation="rotation"
+        :scale="scale"
+        :controlsOptions="{
+          enablePan: true,
+          enableZoom: true,
+          enableRotate: true,
         }"
       />
     </div>
@@ -41,38 +41,16 @@ export default {
   data () {
     return {
       position: {
-        x: 400,
+        x: 0,
         y: 0,
         z: 0,
       },
       rotation: {
-        x: 0,
-        y: 0.5,
+        x: 0.7,
+        y: -0.15,
         z: 0,
       },
-      scale: {x:2, y:2, z:2},
-      labels: [
-        // text label
-        {
-          text: "I'm Text Label",
-          position: { x: 500, y: 200, z: 500 },
-          // scale: { x: 1.5, y: 0.8, z: 0 },
-          textStyle: {
-            fontFamily: "Arial",
-            fontSize: 32,
-            fontWeight: 600,
-            lineHeight: 1,
-            color: "#ffffff",
-            borderWidth: 8,
-            borderRadius: 0,
-            borderColor: "#000000",
-            backgroundColor: "rgba(0,0,0,1)",
-          },
-          sid: 1, // 自定义标识，可有可无
-        },
-      ],
-      enableZoom: true,
-      enableRotate: true,
+      scale: {x:1.5, y:1.5, z:1.5},
     }
   },
   methods: {
