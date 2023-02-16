@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 const webpack = require('webpack')
 
@@ -14,6 +15,11 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: resolve('dist')
+  },
+  devServer: {
+    open: true,
+    hot: true,
+    port: 8000,
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],  // 可省略import文件的后缀，导入优先级是js > vue
@@ -50,6 +56,18 @@ module.exports = {
         ],
       },
       {
+        test: /icons\.js$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              url: ()=> false,
+              importLoaders: 2,
+            },
+          }, 'postcss-loader', 'webfonts-loader'],
+      },
+      {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url-loader',
         options: {
@@ -73,6 +91,7 @@ module.exports = {
       inject: true,
       template: 'index.html',
     }),
+    new MiniCssExtractPlugin(),
     new VueLoaderPlugin(),
     new webpack.DefinePlugin({
       'process.env': {

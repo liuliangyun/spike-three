@@ -37,6 +37,7 @@
     <el-button type="text">文字按钮</el-button>
     <el-button icon="el-icon-search" circle></el-button>
     <div>hahahah<i class="el-icon-edit" /></div>
+    <div>icon<i class="webfonts-home" /></div>
   </div>
 </template>
 <script>

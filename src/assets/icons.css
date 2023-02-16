@@ -1,0 +1,17 @@
+@font-face {
+    font-family: "webfonts";
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class*="webfonts-"] {
+    font-family: "webfonts" !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
