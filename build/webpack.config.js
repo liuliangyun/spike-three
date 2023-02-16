@@ -70,8 +70,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: './src/index.html',
+      inject: true,
+      template: 'index.html',
     }),
     new VueLoaderPlugin(),
     new webpack.DefinePlugin({

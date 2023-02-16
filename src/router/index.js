@@ -6,8 +6,13 @@ Vue.use(VueRouter)
 const router = new VueRouter({
   routes: [
     {
-      name: 'drawingCube',
+      name: 'home',
       path: '/',
+      component: () => import('../pages/Home'),
+    },
+    {
+      name: 'drawingCube',
+      path: '/cube',
       component: () => import('../pages/drawingCube'),
     },
     {
