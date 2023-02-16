@@ -1,53 +1,44 @@
 <template>
-  <model-obj src="static/house13.obj" mtl="static/house13.mtl"></model-obj>
-<!--  <model-collada src="static/elf/elf.dae"></model-collada>-->
-<!--  <div class="vue-3d-model-container">-->
-<!--    <model-gltf src="static/glTF/Duck.gltf"></model-gltf>-->
-<!--    <model-obj src="static/tree.obj" @on-mousemove="onMouseMove"></model-obj>-->
-<!--  </div>-->
+  <div class="main">
+    <div class="header-container">
+      <div class="header">
+        <div class="logo">
+          <img src="static/logo.png" />
+        </div>
+        <div class="title">
+          <span title="热烈欢迎市领导莅临我厂考察指导工作~~"> 热烈欢迎市领导莅临我厂考察指导工作~~</span>
+        </div>
+        <div class="date">
+          <span>2022年04月25日 星期一 20:42&nbsp;&nbsp;|&nbsp;&nbsp;30℃ 晴天</span>
+        </div>
+      </div>
+    </div>
+    <div class="model-container">
+      <div v-for="(house, index) in houses">
+        <span class="name" :id="`start${index}`">
+          {{house.name}}
+        </span>
+        <statistics-chart v-show="house.showStatisticsData" :data="house.data" class="statistics-chart" :id="`end${index}`" />
+        <model-obj
+          :src="house.src"
+          :mtl="house.mtl"
+          :position="position"
+          :rotation="rotation"
+          :scale="scale"
+          :backgroundColor="0x000102"
+          :controlsOptions="{
+            enableZoom,
+            enableRotate,
+            maxDistance: 1500,
+          }"
+          @on-click="(event) => onClick(event, index)"
+        />
+      </div>
+    </div>
+  </div>
 </template>
-<!--<template>-->
-<!--  <div class="main">-->
-<!--    <div class="header-container">-->
-<!--      <div class="header">-->
-<!--        <div class="logo">-->
-<!--          <img src="static/logo.png" />-->
-<!--        </div>-->
-<!--        <div class="title">-->
-<!--          <span title="热烈欢迎市领导莅临我厂考察指导工作~~"> 热烈欢迎市领导莅临我厂考察指导工作~~</span>-->
-<!--        </div>-->
-<!--        <div class="date">-->
-<!--          <span>2022年04月25日 星期一 20:42&nbsp;&nbsp;|&nbsp;&nbsp;30℃ 晴天</span>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class="model-container">-->
-<!--      <div v-for="(house, index) in houses">-->
-<!--        <span class="name" :id="`start${index}`">-->
-<!--          {{house.name}}-->
-<!--        </span>-->
-<!--        <statistics-chart v-show="house.showStatisticsData" :data="house.data" class="statistics-chart" :id="`end${index}`" />-->
-<!--        <model-obj-->
-<!--          :src="house.src"-->
-<!--          :position="position"-->
-<!--          :rotation="rotation"-->
-<!--          :scale="scale"-->
-<!--          :backgroundColor="0x000102"-->
-<!--          :controlsOptions="{-->
-<!--            enableZoom,-->
-<!--            enableRotate,-->
-<!--            maxDistance: 1500,-->
-<!--          }"-->
-<!--          @on-mousemove="(event) => onMouseMove(event, index)"-->
-<!--          @on-click="(event) => onClick(event, index)"-->
-<!--        />-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</template>-->
 <script>
-import { ModelObj, ModelCollada, ModelGltf } from 'vue-3d-model'
-import { vue3dLoader } from 'vue-3d-loader'
+import { ModelObj } from 'vue-3d-model'
 import StatisticsChart from './statisticsChart'
 import LeaderLine from '../../utils/leader-line.min'
 
@@ -55,16 +46,14 @@ export default {
   name: 'TestVue3DModel',
   components: {
     ModelObj,
-    ModelCollada,
-    ModelGltf,
-    vue3dLoader,
     StatisticsChart,
   },
   data () {
     return {
       houses: [{
         name: '一号厂房',
-        src: 'static/house.obj',
+        src: 'static/factory13.obj',
+        mtl: 'static/factory13.mtl',
         showStatisticsData: false,
         lineContainer: null,
         data: {
@@ -119,7 +108,8 @@ export default {
         },
       }, {
         name: '二号厂房',
-        src: 'static/house.obj',
+        src: 'static/factory13.obj',
+        mtl: 'static/factory13.mtl',
         showStatisticsData: false,
         lineContainer: null,
         data: {
@@ -174,7 +164,8 @@ export default {
         },
       }, {
         name: '三号厂房',
-        src: 'static/house.obj',
+        src: 'static/factory13.obj',
+        mtl: 'static/factory13.mtl',
         showStatisticsData: false,
         lineContainer: null,
         data: {
@@ -229,7 +220,8 @@ export default {
         },
       }, {
         name: '四号厂房',
-        src: 'static/house.obj',
+        src: 'static/factory13.obj',
+        mtl: 'static/factory13.mtl',
         showStatisticsData: false,
         lineContainer: null,
         data: {
@@ -284,35 +276,21 @@ export default {
         },
       }],
       position: {
-        x: 400,
-        y: 300,
+        x: 0,
+        y: 0,
         z: 0,
       },
       rotation: {
-        x: -Math.PI / 3,
+        x: 0,
         y: 0,
-        z: 0.8,
+        z: 0,
       },
-      scale: {x:1.5, y:1, z:1},
+      scale: {x:1, y:1, z:1},
       enableZoom: true,
       enableRotate: false,
     }
   },
   methods: {
-    onMouseMove (event, index) {
-      // console.log(event)
-      // this.houses[index].showStatisticsData = !!event
-      // if (!event) {
-      //   if (this.intersected) {
-      //     this.intersected.material.color.setStyle('#fff')
-      //   }
-      //   this.intersected = null
-      //   return
-      // }
-      //
-      // this.intersected = event.object
-      // this.intersected.material.color.setStyle('#13ce66')
-    },
     onClick (event, index) {
       this.houses[index].showStatisticsData = !!event
       if (this.houses[index].showStatisticsData) {
