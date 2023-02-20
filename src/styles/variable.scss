@@ -1,7 +1,10 @@
 // base
-$color-shadow-background: rgba(30,30,30,.76);
-$color-deep-background: #1E1E1E;
+$color-deep-background: rgba(30,30,30,.76);
+$color-deep-shadow: #1E1E1E ;
+
+$color-green: #12da77;
+$color-orange: #f36410;
 
 // icon
-$color-icon-activated: #f36410;
-$color-icon-nonactivated: #ebebeb;
+$color-icon-activated-bg: $color-orange;
+$color-icon-default: #ebebeb;

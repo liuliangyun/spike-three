@@ -53,12 +53,12 @@
   position: absolute;
   left: 0;
   top: 3.5vw;
-  width: 3vw;
-  background: $color-shadow-background;
+  width: 2.1vw;
+  background: $color-deep-background;
   border-radius: 0 0.625vw 0.625vw 0;
 
   :first-child > .tooltip > .icon{
-      background-color: $color-icon-activated;
+      background-color: $color-icon-activated-bg;
   }
 
   .menu-item{
@@ -67,31 +67,30 @@
     align-items: center;
 
     .tooltip{
-      width: 100%;
-      margin: 3vw 0;
+      margin: 3.5vw 0;
       display: flex;
       justify-content: center;
 
       .icon{
-        width: 2vw;
-        height: 2vw;
-        border: solid 1px $color-icon-nonactivated;
+        width: 1.5vw;
+        height: 1.5vw;
+        border: solid 1px $color-icon-default;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: $color-icon-nonactivated;
-        font-size: 1.3vw;
+        color: $color-icon-default;
+        font-size: 1vw;
       }
     }
 
     :global(.el-tooltip__popper){
-      border: 0px !important;
-      background: $color-shadow-background !important;
+      border: 0 !important;
+      background: $color-deep-background !important;
     }
 
     :global(.el-tooltip__popper[x-placement^=right] .popper__arrow){
-      border: 0px !important;
+      border: 0 !important;
     }
 
     :global(.el-tooltip__popper[x-placement^=right] .popper__arrow:after){
@@ -99,7 +98,7 @@
     }
 
     .space-line{
-      background-color: $color-deep-background;
+      background-color: $color-deep-shadow;
       width: 60%;
       height: 2px;
     }

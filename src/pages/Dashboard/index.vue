@@ -1,6 +1,7 @@
 <template>
   <div class="dashboard-wrapper">
     <sidebar/>
+    <survey-data/>
   </div>
 </template>
   

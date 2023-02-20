@@ -1,4 +1,10 @@
 // 防止100vh超出屏幕导致滚动条出现
-body {
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,p,div {
   margin: 0;
 }
