@@ -1,21 +1,24 @@
 <template>
   <div class="dashboard-wrapper">
+    <Header/>
     <sidebar/>
     <survey-data/>
-    <general-charts/>
+    <charts/>
   </div>
 </template>
 
 <script>
+  import Header from "./Header"
   import SurveyData from "./SurveyData"
-  import GeneralCharts from "./GeneralCharts"
+  import Charts from "./Charts"
   import Sidebar from "./Sidebar"
 
   export default {
     name: 'DashBoard',
     components: {
+      Header,
       SurveyData,
-      GeneralCharts,
+      Charts,
       Sidebar
     },
   }

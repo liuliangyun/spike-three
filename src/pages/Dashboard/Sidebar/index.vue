@@ -1,7 +1,7 @@
 <template>
   <div class="sidebar">
     <div class="menu-item" v-for="item in menuList">
-      <el-tooltip effect="light" :content="item.title" placement="left">
+      <el-tooltip effect="light" popper-class="popper" :content="item.title" placement="left">
         <div class="tooltip" >
           <div class="icon">
             <i :class="item.icon"></i>
@@ -84,16 +84,16 @@
       }
     }
 
-    :global(.el-tooltip__popper){
+    :global(.popper){
       border: 0 !important;
       background: $color-deep-background !important;
     }
 
-    :global(.el-tooltip__popper[x-placement^=right] .popper__arrow){
+    :global(.popper[x-placement^=right] .popper__arrow){
       border: 0 !important;
     }
 
-    :global(.el-tooltip__popper[x-placement^=right] .popper__arrow:after){
+    :global(.popper[x-placement^=right] .popper__arrow:after){
       border-right-color: $color-deep-background !important;
     }
 

@@ -15,7 +15,12 @@
           <div class="title">
             {{ chartItem.title }}
           </div>
-          <chart :chartData="chartItem.data"/>
+          <div class="chart">
+            <component
+                :is="chartItem.data.type+'-chart'"
+                :chartData="chartItem.data.chart"
+            />
+          </div>
         </div>
       </div>
     </el-drawer>
@@ -24,12 +29,16 @@
 
 <script>
 import { Drawer } from 'element-ui'
-import Chart from "./Chart/index.vue";
+import LineChart from './LineChart.vue'
+import BarChart from './BarChart.vue'
+import PieChart from './PieChart.vue'
   export default {
-    name: 'GeneralCharts',
+    name: 'Charts',
     components:{
       ElDrawer: Drawer,
-      Chart
+      LineChart,
+      BarChart,
+      PieChart,
     },
     data(){
       return{
@@ -247,8 +256,12 @@ import Chart from "./Chart/index.vue";
             line-height: 1.2vw;
             padding-left: 8px;
           }
-          .chart{
-            height: 8vw;
+          .chart {
+            width: 100%;
+            height: calc(max(8vw , 102px));
+            min-height:122px;
+            display: flex;
+            justify-content: center;
           }
         }
       }
