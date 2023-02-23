@@ -39,15 +39,11 @@ const router = new VueRouter({
       name: 'dashboard',
       path: '/dashboard',
       component: () => import('../pages/Dashboard'),
-      redirect: '/dashboard/first-page',
+      redirect: '/dashboard/factory',
       children: [
         {
-          path: 'first-page',
-          component: () => import('../pages/vue3DModel'),
-        },
-        {
-          path: 'other-page',
-          component: () => import('../pages/drawingLines'),
+          path: 'factory',
+          component: () => import('../pages/3DModel'),
         },
       ]
     },

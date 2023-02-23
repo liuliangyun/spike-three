@@ -3,6 +3,7 @@
     <Header/>
     <sidebar/>
     <survey-data/>
+    <router-view></router-view>
     <charts/>
   </div>
 </template>
