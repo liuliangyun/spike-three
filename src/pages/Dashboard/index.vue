@@ -2,9 +2,10 @@
   <div class="dashboard-wrapper">
     <sidebar/>
     <survey-data/>
+    <general-charts/>
   </div>
 </template>
-  
+
 <script>
   import SurveyData from "./SurveyData"
   import GeneralCharts from "./GeneralCharts"
@@ -19,8 +20,7 @@
     },
   }
 </script>
-  
+
 <style lang="scss" scoped>
-  
+
 </style>
-  

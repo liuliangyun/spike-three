@@ -8,3 +8,8 @@ $color-orange: #f36410;
 // icon
 $color-icon-activated-bg: $color-orange;
 $color-icon-default: #ebebeb;
+
+:export {
+  color-green: $color-green;
+  color-orange: $color-orange;
+}
